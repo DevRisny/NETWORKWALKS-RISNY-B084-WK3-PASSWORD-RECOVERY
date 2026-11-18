@@ -1,0 +1,17 @@
+Networkwalks Week 3 (B084) - Password recovery of 3 locked PDFs
+Lab files: My Locked PDF1.pdf, My Locked PDF2.pdf, My Locked PDF3.pdf
+All test files provided by Networkwalks for the lab; recovered for learning only.
+
+Method A - John the Ripper format hash, cracked offline (hashcat, mode 10500):
+  pdf2john "My Locked PDF1.pdf" > pdf_hashes.txt
+  hashcat -m 10500 -a 0 pdf_hashes.txt rockyou.txt
+  Result: 3/3 recovered.
+
+Recovered passwords:
+  My Locked PDF1.pdf  ->  password1
+  My Locked PDF2.pdf  ->  password1
+  My Locked PDF3.pdf  ->  1qaz2wsx
+
+Note: the hash the Networkwalks Hash Calculator produces is pdf2john / hashcat compatible,
+so the identical John the Ripper command recovers the same passwords:
+  john --wordlist=/usr/share/wordlists/rockyou.txt pdf_hashes.txt
